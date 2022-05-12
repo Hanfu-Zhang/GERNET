@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block subtitle %}
+    基于指纹库测试
+{% endblock %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="container">
+            <div style="padding-top: 0px; padding-bottom: 15px;">
+                <form method="post" action="{{ url_for("main.test_database") }}" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                        <div class="col-lg-6" style="padding: 0;">
+                            {{ form.file(class="form-control", accept=".dat") }}
+                        </div>
+                        <div class="col-lg-6" style="padding: 0; padding-left: 5px;">
+                            {{ form.submit(class="btn btn-primary") }}
+                            <a href="{{ url_for("main.test_database") }}"><span class="btn btn-default">清空结果</span></a>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% if feature != "" and judge_res != "" and test_duration != ""  %}
+        <div class="row">
+            <div class="container">
+                <div class="col-lg-6" style="padding: 0;">
+                    <br>
+                    <p><b>数据特征</b></p>
+                    <p style="word-break:break-all; width:600px;">{{ feature }}</p>
+                    <p><b>判断结果</b></p>
+                    <p>{{ judge_res }}</p>
+                    <p><b>测试时长</b></p>
+                    <p>{{ test_duration }}</p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
