@@ -44,7 +44,6 @@ def delete_feature(id):
     feature = Feature.query.filter_by(id=id).first_or_404()
     db.session.delete(feature)
     db.session.commit()
-    flash("删除成功！")
     return redirect(url_for('.database'))
 
 
